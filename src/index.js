@@ -1,6 +1,21 @@
 import React, { Component } from 'react';
 import ReactDOM from 'react-dom';
 
+class Task extends Component {
+  constructor(props){
+    super(props);
+    this.state = {
+      title: props.title
+    }
+  }
+
+  render(){
+    return(
+      <p>{this.state.title}</p>
+    );
+  }
+
+};
 
 class App extends Component {
   constructor(props){
@@ -10,28 +25,39 @@ class App extends Component {
         taskList: []
       }
     this.handleTextBoxFieldChange = this.handleTextBoxFieldChange.bind(this);
-    this.addCategory = this.addCategory.bind(this);
-    this.removeCatgory = this.removeCatgory.bind(this);
+    this.addNewTask = this.addNewTask.bind(this);
+    this.removeTask = this.removeTask.bind(this);
   }
 
   handleTextBoxFieldChange(event){
     this.setState({
       newTaskTitle: event.target.value,
-      taskList: this.taskList
+      taskList: this.state.taskList
     });
-  }
-  addCategory(event){}
-  removeCatgory(event){}
+  };
+  addNewTask(event){
+    var newTaskList = this.state.taskList.concat([this.state.newTaskTitle]);
+    this.setState({
+      newTaskTitle: "",
+      taskList: newTaskList
+    })
+  };
+  removeTask(event){};
 
   render(){
+    const tasks = this.state.taskList.map( ( task ) => <li>{task}</li> );
     return(
         <div>
           <h1 className="react-title">Welcome to A Lean Introduction to React</h1>
-          <p className="react-intro">Hello React!!</p>
+          <h3 className="react-intro">Enter a task:</h3>
 
           <input type="text" name="newTask" size="50" onChange={this.handleTextBoxFieldChange} value={this.state.newTaskTitle}/>
-          <button>New Task</button>
-          <p>{this.state.newTaskTitle}</p>
+          <button onClick={this.addNewTask}>New Task</button>
+
+          <div className="task-list">
+          {tasks}
+          </div>
+
         </div>
     );
   }

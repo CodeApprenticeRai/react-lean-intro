@@ -2,3 +2,8 @@ body {
   text-align: center;
   font-family: sans-serif;
 }
+
+.task-list{
+  padding-top: 20px;
+  text-align: left;
+}
