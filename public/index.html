@@ -3,12 +3,26 @@
 
 <head>
   <link rel="stylesheet" type="text/css" href="index.css">
+  <script>
+  function changeColor(){
+    var ourElement = document.getElementById("root");
+
+    if ( ourElement.style.backgroundColor == "blue" ){
+      ourElement.style.backgroundColor = "red";
+    }
+    else {
+      ourElement.style.backgroundColor = "blue";
+    }
+    return;
+    }
+  </script>
 </head>
 
 <body>
-  <div>
+  <div id="root">
     <h1 className="react-title">Welcome to A Lean Introduction to React</h1>
     <p className="react-intro">We're going to learn the basics of React.js</p>
+    <button onClick="changeColor()">Change Color</button>
   </div>
 </body>
 
